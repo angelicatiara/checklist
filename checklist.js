@@ -11,8 +11,7 @@ function addTodo(text) {
    
    //make the code print a list//
    const list = document.querySelector('.js-todo-list');
-   list.insertAdjacentHTML('beforeend', '
-    <li class="todo-item" data-key="${todo.id}">
+   list.insertAdjacentHTML('beforeend', '<li class="todo-item" data-key="${todo.id}">
       <input id="${todo.id}" type="checkbox"/>
       <label for="${todo.id}" class="tick js-tick"></label>
       <span>${todo.text}</span>
