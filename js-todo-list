@@ -69,5 +69,8 @@ function addTodo(text) {
     todoItems = todoItems.filter(item => item.id !== Number(key));
     const item = document.querySelector('[data-key='${key}']');
     item.remove();
+    // modifications to select the list element & trim to ensure whitespace is cleared when there are no todo items left //
+    const list = document.querySelector('.js-todo-list');
+    if (todoItems.length === 0) list.innerHTML = '';
   }
   
