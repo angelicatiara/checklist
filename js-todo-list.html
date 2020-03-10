@@ -4,8 +4,15 @@
     <div class="container">
       <h1 class="app-title">Tiara's Agenda</h1>
       <ul class="todo-list js-todo-list"></ul>
+      <!-- markup for empty state prompt -->
+      <div class="empty-state">
+        <svg class="checklist-icon"><use href="#checklist-icon"></use></svg>
+        <h2 class="empty-state__title">Hello, Agus!</h2>
+        <p class="empty-state__description">What do you want to get done today?</p>
+      </div>
+      <!-- end -->
       
-      <form class="js-form">
+      <form class="todo-form js-form">
         <input autofocus type="text" aria-label="Enter a new to-do item" placeholder="E.g. Conquer the world" class="js-todo-input">
       </form>
     </div>
