@@ -20,7 +20,6 @@ function addTodo(text) {
        </button>
      </li>
     ');
-
   }
   
   const form = document.querySelector('.js-form');
@@ -36,5 +35,26 @@ function addTodo(text) {
       input.focus();
      }
   });
+  
+  //Add a feature that marks a task as 'done' by listening to click event//
+  const list = document.querySelector('.js-todo-list');
+  list.addEventListener('click', event => {
+    if (event.target.classList.contains('js-tick')) {
+      const itemKey = event.target.parentElement.dataset.key;
+      toogleDone(itemKey);
+    }
+  }); 
  
+  //creating toogleDone() and addtTodo() functions//
+  function toogleDone(key) {
+    const index = todoItems.findIndex(item => item.id === Number(key));
+    todoItems[index].checked = !todoItems[index].checked;
+    
+    const item = document.querySelector('[data-key='${key}']');
+    if (todoItems[index].checked) {
+      item.classList.add('done');
+    } else {
+      item.classList.remove('done');
+    }
+  }
   
