@@ -43,6 +43,12 @@ function addTodo(text) {
       const itemKey = event.target.parentElement.dataset.key;
       toogleDone(itemKey);
     }
+    
+    //another 'if' for detecting when delete is clicked//
+    if (event.target.classList.contains('js-delete-todo')) {
+      const itemKey = event.target.parentElement.dataset.key;
+      deleteTodo(itemKey);
+    }
   }); 
  
   //creating toogleDone() and addtTodo() functions//
@@ -56,5 +62,12 @@ function addTodo(text) {
     } else {
       item.classList.remove('done');
     }
+  }
+  
+  //function for deleteTodo()//
+  function deleteTodo(key) {
+    todoItems = todoItems.filter(item => item.id !== Number(key));
+    const item = document.querySelector('[data-key='${key}']');
+    item.remove();
   }
   
