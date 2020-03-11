@@ -1,4 +1,3 @@
-
 let todoItems = [];
 function addTodo(text) {
   const todo = {
@@ -10,16 +9,40 @@ function addTodo(text) {
    todoItems.push(todo);
    
    //make the code print a list//
-   const list = document.querySelector('.js-todo-list');
-   list.insertAdjacentHTML('beforeend', '<li class="todo-item" data-key="${todo.id}">
+  const list = document.querySelector('.js-todo-list');
+  list.insertAdjacentHTML('beforeend', `
+    <li class="todo-item" data-key="${todo.id}">
       <input id="${todo.id}" type="checkbox"/>
       <label for="${todo.id}" class="tick js-tick"></label>
       <span>${todo.text}</span>
       <button class="delete-todo js-delete-todo">
         <svg><use href="#delete-icon"></use></svg>
-       </button>
-     </li>
-    ');
+      </button>
+    </li>
+  `);
+  }
+
+ //creating toogleDone() and addtTodo() functions//
+  function toogleDone(key) {
+    const index = todoItems.findIndex(item => item.id === Number(key));
+    todoItems[index].checked = !todoItems[index].checked;
+    
+    const item = document.querySelector('[data-key='${key}']');
+    if (todoItems[index].checked) {
+      item.classList.add('done');
+    } else {
+      item.classList.remove('done');
+    }
+  }
+  
+  //function for deleteTodo()//
+  function deleteTodo(key) {
+    todoItems = todoItems.filter(item => item.id !== Number(key));
+    const item = document.querySelector('[data-key='${key}']');
+    item.remove();
+    // modifications to select the list element & trim to ensure whitespace is cleared when there are no todo items left //
+    const list = document.querySelector('.js-todo-list');
+    if (todoItems.length === 0) list.innerHTML = '';
   }
   
   const form = document.querySelector('.js-form');
@@ -51,26 +74,5 @@ function addTodo(text) {
     }
   }); 
  
-  //creating toogleDone() and addtTodo() functions//
-  function toogleDone(key) {
-    const index = todoItems.findIndex(item => item.id === Number(key));
-    todoItems[index].checked = !todoItems[index].checked;
-    
-    const item = document.querySelector('[data-key='${key}']');
-    if (todoItems[index].checked) {
-      item.classList.add('done');
-    } else {
-      item.classList.remove('done');
-    }
-  }
-  
-  //function for deleteTodo()//
-  function deleteTodo(key) {
-    todoItems = todoItems.filter(item => item.id !== Number(key));
-    const item = document.querySelector('[data-key='${key}']');
-    item.remove();
-    // modifications to select the list element & trim to ensure whitespace is cleared when there are no todo items left //
-    const list = document.querySelector('.js-todo-list');
-    if (todoItems.length === 0) list.innerHTML = '';
-  }
+ 
   
