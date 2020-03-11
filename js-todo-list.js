@@ -23,33 +23,33 @@ function addTodo(text) {
   }
 
  //creating toogleDone() and addtTodo() functions//
-  function toogleDone(key) {
-    const index = todoItems.findIndex(item => item.id === Number(key));
-    todoItems[index].checked = !todoItems[index].checked;
-    
-    const item = document.querySelector('[data-key='${key}']');
-    if (todoItems[index].checked) {
-      item.classList.add('done');
-    } else {
-      item.classList.remove('done');
-    }
+function toggleDone(key) {
+  const index = todoItems.findIndex(item => item.id === Number(key));
+  todoItems[index].checked = !todoItems[index].checked;
+
+  const item = document.querySelector(`[data-key='${key}']`);
+  if (todoItems[index].checked) {
+    item.classList.add('done');
+  } else {
+    item.classList.remove('done');
   }
+}
   
   //function for deleteTodo()//
-  function deleteTodo(key) {
-    todoItems = todoItems.filter(item => item.id !== Number(key));
-    const item = document.querySelector('[data-key='${key}']');
-    item.remove();
-    // modifications to select the list element & trim to ensure whitespace is cleared when there are no todo items left //
-    const list = document.querySelector('.js-todo-list');
-    if (todoItems.length === 0) list.innerHTML = '';
-  }
+ function deleteTodo(key) {
+  todoItems = todoItems.filter(item => item.id !== Number(key));
+  const item = document.querySelector(`[data-key='${key}']`);
+  item.remove();
   
-  const form = document.querySelector('.js-form');
-  form.addEventListener('submit', event => {
+  const list = document.querySelector('.js-todo-list');
+  if (todoItems.length === 0) list.innerHTML = '';
+}
+  
+ const form = document.querySelector('.js-form');
+form.addEventListener('submit', event => {
   //this prevents the page from refreshing every time we put a new to do//
-    event.preventDefault();
-    const input = document.querySelector('.js-todo-input');
+  event.preventDefault();
+  const input = document.querySelector('.js-todo-input');
     
     const text = input.value.trim();
     if (text !== '') {
@@ -60,19 +60,20 @@ function addTodo(text) {
   });
   
   //Add a feature that marks a task as 'done' by listening to click event//
-  const list = document.querySelector('.js-todo-list');
-  list.addEventListener('click', event => {
-    if (event.target.classList.contains('js-tick')) {
-      const itemKey = event.target.parentElement.dataset.key;
-      toogleDone(itemKey);
-    }
+ const list = document.querySelector('.js-todo-list');
+list.addEventListener('click', event => {
+  if (event.target.classList.contains('js-tick')) {
+    const itemKey = event.target.parentElement.dataset.key;
+    toggleDone(itemKey);
+  }
     
     //another 'if' for detecting when delete is clicked//
-    if (event.target.classList.contains('js-delete-todo')) {
-      const itemKey = event.target.parentElement.dataset.key;
-      deleteTodo(itemKey);
-    }
-  }); 
+     if (event.target.classList.contains('js-delete-todo')) {
+    const itemKey = event.target.parentElement.dataset.key;
+    deleteTodo(itemKey);
+  }
+
+});
  
  
   
