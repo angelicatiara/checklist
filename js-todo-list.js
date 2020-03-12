@@ -67,3 +67,4 @@ list.addEventListener('click', event => {
     const itemKey = event.target.parentElement.dataset.key;
     deleteTodo(itemKey);
   }
+});
