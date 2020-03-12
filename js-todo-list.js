@@ -65,7 +65,7 @@ list.addEventListener('click', event => {
   if (event.target.classList.contains('js-tick')) {
     const itemKey = event.target.parentElement.dataset.key;
     toggleDone(itemKey);
-  )}
+  }}
     
     //another 'if' for detecting when delete is clicked//
      if (event.target.classList.contains('js-delete-todo')) {
