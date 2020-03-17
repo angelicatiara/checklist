@@ -103,7 +103,7 @@ input[type="checkbox"] {
 }
 
 form {
-	width: 100px;
+	width: 450px;
 	display: flex;
 	justify-content: space-between;
 }
